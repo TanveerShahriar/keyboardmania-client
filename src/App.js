@@ -5,6 +5,7 @@ import Home from './Pages/Home/Home';
 import Login from './Pages/Login/Login';
 import Navbar from './Pages/Shared/Navbar';
 import Footer from './Pages/Shared/Footer';
+import NotFound from './Pages/Shared/NotFound';
 
 function App() {
   return (
@@ -21,6 +22,12 @@ function App() {
           <Route path='/login' element={
             <CustomTitle title={"Login"}>
               <Login />
+            </CustomTitle>
+          }></Route>
+
+          <Route path='*' element={
+            <CustomTitle title={"Not Found"}>
+              <NotFound></NotFound>
             </CustomTitle>
           }></Route>
         </Routes>

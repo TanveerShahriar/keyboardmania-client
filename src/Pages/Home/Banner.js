@@ -10,7 +10,7 @@ const Banner = () => {
                 <div className='lg:w-1/2 text-left'>
                     <h1 className="text-5xl font-bold">Get All Your Stuffs</h1>
                     <h1 className="text-4xl font-bold">In One Place</h1>
-                    <p className="py-6">We manufacture each and every part and tool of a keyboard. Grab what you need at a reasonable price.</p>
+                    <p className="text-xl py-6">We manufacture each and every part and tool of a keyboard. Grab what you need at a reasonable price.</p>
                 </div>
             </div>
         </div>
