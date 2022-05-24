@@ -6,7 +6,7 @@ import React from 'react';
 const BusinessSummary = () => {
     return (
         <div>
-            <h1 className='text-6xl font-bold'>Summary</h1>
+            <h1 className='text-secondary text-6xl font-bold my-8'>Summary</h1>
             <div className="stats container mx-auto stats-vertical lg:stats-horizontal shadow-2xl bg-primary text-white my-6">
 
                 <div className="stat shadow-2xl text-center">
