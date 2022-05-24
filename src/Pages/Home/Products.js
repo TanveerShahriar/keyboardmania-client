@@ -1,5 +1,6 @@
 import React from 'react';
 import { useQuery } from 'react-query';
+import Loading from '../Shared/Loading';
 import Product from './Product';
 
 const Products = () => {
@@ -8,7 +9,7 @@ const Products = () => {
             .then(res => res.json()))
 
     if (isLoading) {
-        return <span>loading...</span>
+        return <Loading></Loading>
     }
 
     return (
