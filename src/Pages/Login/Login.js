@@ -72,8 +72,8 @@ const Login = () => {
                                 })}
                             />
                             <label className="label">
-                                {errors.email?.type === 'required' && <span className="label-text-alt text-red-500">{errors.email.message}</span>}
-                                {errors.email?.type === 'pattern' && <span className="label-text-alt text-red-500">{errors.email.message}</span>}
+                                {errors.email?.type === 'required' && <span className="label-text-alt text-yellow-100 text-base">{errors.email.message}</span>}
+                                {errors.email?.type === 'pattern' && <span className="label-text-alt text-yellow-100 text-base">{errors.email.message}</span>}
                             </label>
                         </div>
                         <div className="form-control w-full max-w-xs">
@@ -96,8 +96,8 @@ const Login = () => {
                                 })}
                             />
                             <label className="label">
-                                {errors.password?.type === 'required' && <span className="label-text-alt text-red-500">{errors.password.message}</span>}
-                                {errors.password?.type === 'minLength' && <span className="label-text-alt text-red-500">{errors.password.message}</span>}
+                                {errors.password?.type === 'required' && <span className="label-text-alt text-yellow-100 text-base">{errors.password.message}</span>}
+                                {errors.password?.type === 'minLength' && <span className="label-text-alt text-yellow-100 text-base">{errors.password.message}</span>}
                             </label>
                         </div>
 

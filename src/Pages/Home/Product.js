@@ -1,7 +1,14 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 
 const Product = ({ product }) => {
     const { _id, image, name, description, min, quantity, price } = product;
+    const navigate = useNavigate();
+
+    const navigatePurchase = id => {
+        navigate(`purchase/${id}`)
+    }
+
     return (
         <div className="card shadow-xl">
             <figure><img className='h-60' src={image} alt="Shoes" /></figure>
@@ -14,7 +21,7 @@ const Product = ({ product }) => {
                     <p>Price : ${price}</p>
                 </div>
                 <div className="card-actions justify-end">
-                    <button className="btn btn-outline btn-secondary font-bold text-xl">Buy Now</button>
+                    <button onClick={() => navigatePurchase(_id)} className="btn btn-outline btn-secondary font-bold text-xl">Buy Now</button>
                 </div>
             </div>
         </div>

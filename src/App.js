@@ -7,6 +7,10 @@ import Navbar from './Pages/Shared/Navbar';
 import Footer from './Pages/Shared/Footer';
 import NotFound from './Pages/Shared/NotFound';
 import SignUp from './Pages/Login/Signup';
+import Purchase from './Pages/Home/Purchase';
+import RequireAuth from './Pages/Login/RequireAuth';
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 function App() {
   return (
@@ -17,6 +21,14 @@ function App() {
           <Route path='/' element={
             <CustomTitle title={"Home"}>
               <Home />
+            </CustomTitle>
+          }></Route>
+
+          <Route path='/purchase/:id' element={
+            <CustomTitle title={"Purchase"}>
+              <RequireAuth>
+                <Purchase />
+              </RequireAuth>
             </CustomTitle>
           }></Route>
 
@@ -40,6 +52,7 @@ function App() {
         </Routes>
       </div>
       <Footer></Footer>
+      <ToastContainer />
     </div>
   );
 }
