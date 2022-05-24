@@ -1,5 +1,5 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faFlag, faUserGroup, faComments } from '@fortawesome/free-solid-svg-icons'
+import { faFlag, faUserGroup, faComments } from '@fortawesome/free-solid-svg-icons';
 
 import React from 'react';
 

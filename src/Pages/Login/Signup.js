@@ -1,32 +1,35 @@
-import React, { useEffect } from 'react';
-import { useSignInWithEmailAndPassword, useSignInWithGoogle } from 'react-firebase-hooks/auth';
+import { useCreateUserWithEmailAndPassword, useSignInWithGoogle, useUpdateProfile } from 'react-firebase-hooks/auth';
 import auth from '../../firebase.init';
 import { useForm } from "react-hook-form";
 import Loading from '../Shared/Loading';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import useToken from '../../hooks/useToken';
+import { useEffect } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { fab, faGoogle } from "@fortawesome/free-brands-svg-icons";
 import { library } from '@fortawesome/fontawesome-svg-core';
 
 library.add(fab, faGoogle);
 
-const Login = () => {
+const SignUp = () => {
     const [signInWithGoogle, gUser, gLoading, gError] = useSignInWithGoogle(auth);
     const { register, formState: { errors }, handleSubmit } = useForm();
     const [
-        signInWithEmailAndPassword,
+        createUserWithEmailAndPassword,
         user,
         loading,
         error,
-    ] = useSignInWithEmailAndPassword(auth);
+    ] = useCreateUserWithEmailAndPassword(auth);
 
-    const [token] = useToken(user || gUser);
+    const [updateProfile, updating, updateError] = useUpdateProfile(auth);
 
-    let signInError;
+    const [token] = useToken(user || gUser)
+
     const navigate = useNavigate();
     const location = useLocation();
     let from = location.state?.from?.pathname || "/";
+
+    let signInError;
 
     useEffect(() => {
         if (token) {
@@ -34,23 +37,44 @@ const Login = () => {
         }
     }, [token, from, navigate])
 
-    if (loading || gLoading) {
+    if (loading || gLoading || updating) {
         return <Loading></Loading>
     }
 
-    if (error || gError) {
-        signInError = <p className='text-red-500'><small>{error?.message || gError?.message}</small></p>
+    if (error || gError || updateError) {
+        signInError = <p className='text-red-500'><small>{error?.message || gError?.message || updateError?.message}</small></p>
     }
 
-    const onSubmit = data => {
-        signInWithEmailAndPassword(data.email, data.password);
+    const onSubmit = async data => {
+        await createUserWithEmailAndPassword(data.email, data.password);
+        await updateProfile({ displayName: data.name });
     }
     return (
         <div className='flex justify-center items-center my-12'>
             <div className="card w-96 bg-primary shadow-xl">
                 <div className="card-body">
-                    <h2 className="text-center text-2xl text-white font-bold">Login</h2>
+                    <h2 className="text-center text-white text-2xl font-bold">Sign Up</h2>
                     <form onSubmit={handleSubmit(onSubmit)}>
+
+                        <div className="form-control w-full max-w-xs">
+                            <label className="label">
+                                <span className="label-text text-white">Name</span>
+                            </label>
+                            <input
+                                type="text text-black"
+                                placeholder="Your Name"
+                                className="input input-bordered w-full max-w-xs"
+                                {...register("name", {
+                                    required: {
+                                        value: true,
+                                        message: 'Name is Required'
+                                    }
+                                })}
+                            />
+                            <label className="label">
+                                {errors.name?.type === 'required' && <span className="label-text-alt text-red-500">{errors.name.message}</span>}
+                            </label>
+                        </div>
 
                         <div className="form-control w-full max-w-xs">
                             <label className="label">
@@ -102,13 +126,13 @@ const Login = () => {
                         </div>
 
                         {signInError}
-                        <input className='btn btn-outline btn-secondary w-full max-w-xs text-white font-bold text-xl' type="submit" value="Login" />
+                        <input className='btn btn-outline btn-secondary text-xl font-bold w-full max-w-xs text-white' type="submit" value="Sign Up" />
                     </form>
-                    <p><small className='text-white'>New to our website? <Link className='text-secondary' to="/signup">Create New Account</Link></small></p>
+                    <p><small className='text-white'>Already have an account? <Link className='text-secondary' to="/login">Please login</Link></small></p>
                     <div className="divider text-white">OR</div>
                     <button
                         onClick={() => signInWithGoogle()}
-                        className="btn btn-outline btn-secondary font-bold text-lg"
+                        className="btn btn-outline btn-secondary"
                     ><FontAwesomeIcon icon={['fab', 'fa-google']} /></button>
                 </div>
             </div>
@@ -116,4 +140,4 @@ const Login = () => {
     );
 };
 
-export default Login;
+export default SignUp;

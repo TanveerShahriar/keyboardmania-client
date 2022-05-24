@@ -6,6 +6,7 @@ import Login from './Pages/Login/Login';
 import Navbar from './Pages/Shared/Navbar';
 import Footer from './Pages/Shared/Footer';
 import NotFound from './Pages/Shared/NotFound';
+import SignUp from './Pages/Login/Signup';
 
 function App() {
   return (
@@ -22,6 +23,12 @@ function App() {
           <Route path='/login' element={
             <CustomTitle title={"Login"}>
               <Login />
+            </CustomTitle>
+          }></Route>
+
+          <Route path='/signup' element={
+            <CustomTitle title={"Signup"}>
+              <SignUp />
             </CustomTitle>
           }></Route>
 
