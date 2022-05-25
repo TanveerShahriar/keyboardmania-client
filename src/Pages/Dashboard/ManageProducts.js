@@ -1,10 +1,12 @@
 import { signOut } from 'firebase/auth';
 import React, { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import swal from 'sweetalert';
 import auth from '../../firebase.init';
 
 const ManageProducts = () => {
     const [products, setProducts] = useState([]);
+    const navigate = useNavigate();
 
     useEffect(() => {
         fetch(`${process.env.REACT_APP_SERVER_LINK}/products`)
@@ -29,6 +31,7 @@ const ManageProducts = () => {
                             if (res.status === 401 || res.status === 403) {
                                 signOut(auth);
                                 localStorage.removeItem('accessToken');
+                                navigate("/")
                             }
                             return res.json()
                         })

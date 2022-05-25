@@ -4,7 +4,7 @@ import { toast } from 'react-toastify';
 import swal from 'sweetalert';
 
 const AddProduct = () => {
-    const { register, formState: { errors }, handleSubmit, reset } = useForm();
+    const { register, handleSubmit, reset } = useForm();
 
     const imageStorageKey = 'f5beab930ad664896126dde759873a3f';
 

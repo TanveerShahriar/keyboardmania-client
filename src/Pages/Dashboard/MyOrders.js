@@ -34,7 +34,7 @@ const MyOrders = () => {
     }, [refresh, user, navigate]);
 
     const handleDelete = id => {
-        swal("Are you sure you want to delete your comment?", {
+        swal("Are you sure you want to delete your order?", {
             buttons: ["No!", true],
         })
             .then(proceed => {

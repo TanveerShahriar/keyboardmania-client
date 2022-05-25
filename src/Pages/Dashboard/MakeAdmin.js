@@ -41,7 +41,7 @@ const Users = () => {
     }
 
     const deleteUser = (id) => {
-        swal("Are you sure you want to delete your comment?", {
+        swal("Are you sure you want to delete the user?", {
             buttons: ["No!", true],
         })
             .then(proceed => {
