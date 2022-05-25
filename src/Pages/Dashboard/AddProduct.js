@@ -1,6 +1,7 @@
 import React from 'react';
 import { useForm } from "react-hook-form";
 import { toast } from 'react-toastify';
+import swal from 'sweetalert';
 
 const AddProduct = () => {
     const { register, formState: { errors }, handleSubmit, reset } = useForm();
@@ -22,31 +23,45 @@ const AddProduct = () => {
                     const img = result.data.url;
                     const product = {
                         name: data.name,
-                        min : parseFloat(data.min),
-                        quantity : parseFloat(data.quantity),
-                        price : parseFloat(data.price),
-                        description : data.description,
+                        min: parseFloat(data.min),
+                        quantity: parseFloat(data.quantity),
+                        price: parseFloat(data.price),
+                        description: data.description,
                         image: img
                     }
-                    // send to database 
-                    fetch(`${process.env.REACT_APP_SERVER_LINK}/product`, {
-                        method: 'POST',
-                        headers: {
-                            'content-type': 'application/json',
-                            authorization: `Bearer ${localStorage.getItem('accessToken')}`
-                        },
-                        body: JSON.stringify(product)
-                    })
-                        .then(res => res.json())
-                        .then(inserted => {
-                            if (inserted.insertedId) {
-                                toast.success('Added successfully')
-                                reset();
-                            }
-                            else {
-                                toast.error('Failed to add');
-                            }
+                    if (data.quantity <= 0) {
+                        swal("Please enter a valid quantity");
+                    }
+                    else if (data.min <= 0) {
+                        swal("Please enter a valid minimum quantity");
+                    }
+                    else if (data.min > data.quantity) {
+                        swal("Minimum order quantity can not be more than available quantity.");
+                    }
+                    else if (data.price <= 0) {
+                        swal("Please enter a valid price")
+                    }
+                    else {
+                        // send to database 
+                        fetch(`${process.env.REACT_APP_SERVER_LINK}/product`, {
+                            method: 'POST',
+                            headers: {
+                                'content-type': 'application/json',
+                                authorization: `Bearer ${localStorage.getItem('accessToken')}`
+                            },
+                            body: JSON.stringify(product)
                         })
+                            .then(res => res.json())
+                            .then(inserted => {
+                                if (inserted.insertedId) {
+                                    toast.success('Added successfully')
+                                    reset();
+                                }
+                                else {
+                                    toast.error('Failed to add');
+                                }
+                            })
+                    }
 
                 }
 
@@ -55,7 +70,7 @@ const AddProduct = () => {
 
     return (
         <div className='container bg-danger mx-auto my-5 py-5 rounded login-form'>
-            <h2 className="text-center mt-2">Add Item</h2>
+            <h2 className="text-center mt-2 text-3xl font-bold">Add Item</h2>
             <form onSubmit={handleSubmit(onSubmit)}>
                 <div className='my-4'>
                     <input type="text" placeholder="Enter Product Name" name="name" className='input input-bordered w-full max-w-xs' {...register("name")} required />
