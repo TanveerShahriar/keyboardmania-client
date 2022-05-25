@@ -6,10 +6,6 @@ const Review = ({ review }) => {
     const { name, description, rating } = review;
     const ratings = Array.from(Array(parseInt(rating)).keys());
     const nonRatings = Array.from(Array(5-parseInt(rating)).keys());
-    useEffect(() => {
-        console.log(ratings);
-        console.log(nonRatings);
-    },[])
     return (
         <div className="card shadow-xl bg-primary">
             <h2 className="card-title text-secondary text-4xl ml-7 mt-4">{name}</h2>
