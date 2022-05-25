@@ -12,7 +12,7 @@ const Purchase = () => {
     const [user] = useAuthState(auth);
     const { id } = useParams();
     const { register, formState: { errors }, handleSubmit } = useForm();
-    const [input, setInput] = useState(0);
+    const [input, setInput] = useState(1);
     const navigate = useNavigate();
 
     const { data: product, isLoading } = useQuery('product', () =>
