@@ -93,7 +93,7 @@ const MyOrders = () => {
 
                                     {order.paid && <div>
                                         <p><span className="badge badge-success">Paid</span></p>
-                                        {/* <p>Transaction id: <span className='text-success'>{a.transactionId}</span></p> */}
+                                        <p>Transaction id: <span className='text-success'>{order.transactionId}</span></p>
                                     </div>}
                                 </td>
                                 <td>
