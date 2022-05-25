@@ -73,26 +73,26 @@ const AddProduct = () => {
             <h2 className="text-center mt-2 text-3xl font-bold">Add Item</h2>
             <form onSubmit={handleSubmit(onSubmit)}>
                 <div className='my-4'>
-                    <input type="text" placeholder="Enter Product Name" name="name" className='input input-bordered w-full max-w-xs' {...register("name")} required />
+                    <input type="text" placeholder="Enter Product Name" name="name" className='input input-bordered w-full ' {...register("name")} required />
                 </div>
 
                 <div className='my-4'>
-                    <input type="number" placeholder="Enter Quantity" name="quantity" className='input input-bordered w-full max-w-xs' {...register("quantity")} required />
+                    <input type="number" placeholder="Enter Quantity" name="quantity" className='input input-bordered w-full ' {...register("quantity")} required />
                 </div>
 
                 <div className='my-4'>
-                    <input type="number" placeholder="Enter Minimum Order Quantity" name="min" className='input input-bordered w-full max-w-xs' {...register("min")} required />
+                    <input type="number" placeholder="Enter Minimum Order Quantity" name="min" className='input input-bordered w-full ' {...register("min")} required />
                 </div>
 
                 <div className='my-4'>
-                    <input type="number" placeholder="Enter Price" name='price' className='input input-bordered w-full max-w-xs' {...register("price")} required />
+                    <input type="number" placeholder="Enter Price" name='price' className='input input-bordered w-full ' {...register("price")} required />
                 </div>
 
                 <div className='my-4'>
-                    <input type="text" placeholder="Description" name='description' className='input input-bordered w-full max-w-xs' {...register("description")} required />
+                    <input type="text" placeholder="Description" name='description' className='input input-bordered w-full ' {...register("description")} required />
                 </div>
 
-                <div className='pl-40 lg:pl-[550px]'>
+                <div>
                     <input type="file" name='picture' {...register("image")} className="block w-full text-sm text-slate-500 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-violet-50 file:text-violet-700 hover:file:bg-violet-100" />
                 </div>
                 <br />
