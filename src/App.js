@@ -21,6 +21,7 @@ import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import Dashboard from './Pages/Dashboard/Dashboard';
 import Payment from './Pages/Dashboard/Payment';
+import Blogs from './Pages/Blogs/Blogs';
 
 function App() {
   return (
@@ -68,6 +69,12 @@ function App() {
           <Route path='/signup' element={
             <CustomTitle title={"Signup"}>
               <SignUp />
+            </CustomTitle>
+          }></Route>
+
+          <Route path='/blogs' element={
+            <CustomTitle title={"Blogs"}>
+              <Blogs />
             </CustomTitle>
           }></Route>
 
