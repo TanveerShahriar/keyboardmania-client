@@ -13,6 +13,7 @@ const Purchase = () => {
     const { register, formState: { errors }, handleSubmit } = useForm();
     const [input, setInput] = useState(1);
     const navigate = useNavigate();
+    const [inputPrice, setPrice] = useState(0);
 
     useEffect(() => {
         fetch(`${process.env.REACT_APP_SERVER_LINK}/products/${id}`, {
@@ -29,7 +30,8 @@ const Purchase = () => {
             })
             .then(data => {
                 setProduct(data);
-                setInput(data.min)
+                setInput(data.min);
+                setPrice(data.price)
             })
 }, [id])
 
@@ -163,6 +165,7 @@ return (
                             {input > quantity && <span className="label-text-alt text-yellow-100 text-base">You Can't Order More Than {quantity}</span>}
                         </label>
                     </div>
+                    <p className='text-white font-bold text-lg'>Total : {input * inputPrice} </p>
                     <input className='btn btn-outline btn-secondary text-xl font-bold w-full max-w-xs my-6' type="submit" value="Buy Now" disabled={input < min || input > quantity} />
                 </form>
             </div>

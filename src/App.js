@@ -22,6 +22,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import Dashboard from './Pages/Dashboard/Dashboard';
 import Payment from './Pages/Dashboard/Payment';
 import Blogs from './Pages/Blogs/Blogs';
+import Portfolio from './Pages/Portfolio/Portfolio';
 
 function App() {
   return (
@@ -75,6 +76,12 @@ function App() {
           <Route path='/blogs' element={
             <CustomTitle title={"Blogs"}>
               <Blogs />
+            </CustomTitle>
+          }></Route>
+
+          <Route path='/portfolio' element={
+            <CustomTitle title={"Portfolio"}>
+              <Portfolio />
             </CustomTitle>
           }></Route>
 

@@ -15,13 +15,14 @@ const Navbar = () => {
 
     const menuItems = <>
         <li><CustomLink to="/">HOME</CustomLink></li>
-        <li><CustomLink to="/blogs">BLOGS</CustomLink></li>
         {
             user &&
             <li><CustomLink to="/dashboard">DASHBOARD</CustomLink></li>
         }
+        <li><CustomLink to="/blogs">BLOGS</CustomLink></li>
+        <li><CustomLink to="/portfolio">PORTFOLIO</CustomLink></li>
         <li>{user ? <>
-            <p>{user.displayName}</p>
+            <p className='uppercase'>{user.displayName}</p>
             <button className="btn btn-ghost text-xl font-bold" onClick={logout} >Sign Out</button>
         </> : <Link to="/login">Login</Link>}</li>
     </>
