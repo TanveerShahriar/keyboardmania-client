@@ -24,7 +24,7 @@ const Navbar = () => {
         <li>{user ? <>
             <p className='uppercase'>{user.displayName}</p>
             <button className="btn btn-ghost text-xl font-bold" onClick={logout} >Sign Out</button>
-        </> : <Link to="/login">Login</Link>}</li>
+        </> : <Link to="/login">LOGIN</Link>}</li>
     </>
     return (
         <div className="navbar bg-primary text-white">
